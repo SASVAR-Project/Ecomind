@@ -1,0 +1,718 @@
+<style>
+    :root {
+        --width: 300px;
+        --padding: 10px;
+        --bgcolor: #193235;
+        --hovercolor: #0f1f20;
+        --width-collapsed: 50px;
+    }
+
+    body {
+        background: url(https://i.postimg.cc/284ZrdcS/Imagen7.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: 'Poppins';
+        font-size: 22px;
+        padding: 0;
+        margin: 0;
+        margin-left: var(--width-collapsed);
+    }
+
+    #main-container {
+        color: white;
+    }
+
+
+    #sidemenu {
+        background-color: var(--bgcolor);
+        color: white;
+        position: fixed;
+        height: 100%;
+        z-index: 3;
+        left: 0;
+        top: 0;
+    }
+
+    #sidemenu a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .colorPunto {
+        color: #c8ff70;
+        ;
+    }
+
+    #sidemenu #header {
+        box-sizing: border-box;
+        border-bottom: solid 3px var(--hovercolor);
+    }
+
+    #sidemenu #header #title {
+        box-sizing: border-box;
+        overflow: hidden;
+        transition: .5s ease all;
+    }
+
+    #sidemenu #header #title,
+    #sidemenu #header #menu-btn {
+        vertical-align: middle;
+    }
+
+    #sidemenu #header #menu-btn {
+        cursor: pointer;
+        padding: 10px;
+        width: var(--width-collapsed);
+        box-sizing: border-box;
+    }
+
+    #sidemenu #header #menu-btn :hover {
+        background-color: var(--hovercolor);
+    }
+
+    #sidemenu #header #menu-btn .btn-hamburger {
+        background-color: #fff;
+        width: 100%;
+        height: 2px;
+        margin: 5px 0;
+        transition: .4s ease all;
+    }
+
+
+    #sidemenu #profile {
+        border-bottom: solid 3px var(--hovercolor);
+        padding: var(--padding) 0;
+        text-align: center;
+    }
+
+    #sidemenu #profile #photo {
+        box-sizing: border-box;
+        padding: var(--padding);
+        margin: 0 auto;
+
+    }
+
+    #sidemenu #profile #photo img {
+        width: 70%;
+    }
+
+    #sidemenu #profile #photo,
+    #sidemenu #profile #name {
+        font-size: 24px;
+        padding: var(--padding) 0;
+        overflow: hidden;
+    }
+
+    #sidemenu #menu-items {
+        overflow: hidden;
+    }
+
+    #sidemenu #menu-items .item {
+        width: var(--width);
+    }
+
+    #sidemenu #menu-items .item .icon {
+        display: inline-block;
+    }
+
+    #sidemenu #menu-items .item .icon,
+    #sidemenu #menu-items .item .title {
+        font-size: 14px;
+        vertical-align: middle;
+        overflow: hidden;
+        display: inline-block;
+        transition: .5s ease all;
+    }
+
+    #sidemenu #menu-items .item a {
+        display: block;
+        transition: .3s ease all;
+    }
+
+    #sidemenu #menu-items .item a:hover {
+        background-color: var(--hovercolor);
+        transition: .4s ease all;
+
+    }
+
+    #sidemenu #menu-items .item .icon {
+        box-sizing: border-box;
+        padding: var(--padding);
+        width: var(--width-collapsed);
+        cursor: pointer;
+    }
+
+    #sidemenu #menu-items .item .icon img {
+        width: 100%;
+        cursor: pointer;
+
+    }
+
+    #sidemenu #menu-items .item .title {
+        padding: var(--padding) 0;
+        transition: .5s ease all;
+    }
+
+    #sidemenu #menu-items .item .separator {
+        height: 1px;
+        border-bottom: solid 3px var(--hovercolor);
+        margin: 15px 0;
+    }
+
+    #sidemenu #menu-items .borde {
+        border-bottom: solid 3px #0f1f20;
+        ;
+    }
+
+    .menu-expanded {
+        width: var(--width);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        transition: .3s ease all;
+    }
+
+    .menu-expanded #header #title {
+        display: inline-block;
+        width: calc(100% - 50px);
+        margin-right: -5px;
+        padding: var(--padding);
+        transition: .5s ease all;
+    }
+
+    .menu-expanded #header #title span2 {
+        width: calc(var(--width) - var(--width-collapsed) - 5px);
+        overflow: hidden;
+        transition: .3s ease all;
+    }
+
+    .menu-expanded #profile #photo {
+        width: 80%;
+        transition: .3s ease all;
+    }
+
+    .menu-expanded #profile #name {
+        width: 100%;
+        transition: .3s ease all;
+    }
+
+    .menu-collapsed {
+        width: var(--width-collapsed);
+        transition: .3s ease all;
+    }
+
+    .menu-collapsed #header #title {
+        width: 0;
+        height: 0;
+        padding: 0;
+        margin: 0;
+        transition: .3s ease all;
+    }
+
+    .menu-collapsed #profile #name {
+        display: none;
+        transition: .3s ease all;
+    }
+
+    .menu-collapsed .item {
+        width: 100px;
+        transition: .3s ease all;
+    }
+
+    .fondoColor {
+        background-color: #204044;
+        height: 57px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0);
+    }
+
+    .alinear {
+        text-align: right;
+    }
+
+    .fondoColor2 {
+        box-shadow: -6px 3px 5px rgba(0, 0, 0);
+    }
+
+    .espacios {
+        margin-left: 8px;
+        float: right;
+        padding: 0.8em;
+        color: #fff;
+        font-size: 18px;
+        text-decoration: none;
+        background: #1b363a;
+        transition: .3s ease all;
+    }
+
+    .logo {
+        float: right;
+        padding-top: 6px;
+        padding-right: 22px;
+        padding-left: 20px;
+        color: #fff;
+    }
+
+    .logo2 {
+        float: right;
+        padding-top: 6px;
+        padding-right: 5px;
+        padding-left: 0px;
+        margin-right: 0.6em;
+        margin-top: 0.3em;
+        color: #fff;
+    }
+
+    .espacios:hover {
+
+        background: #152b2e;
+        cursor: pointer;
+    }
+
+    .centrado {
+        padding-right: 3em;
+        padding-left: 3em;
+    }
+
+    .posicion {
+        position: fixed;
+    }
+
+    .borde1 {
+        border: 5px solid;
+        border-color: #ffbe30;
+        border-radius: 30px;
+    }
+
+    .box {
+        border: 7px solid rgb(51, 87, 153);
+        background: #70c6ff;
+        border-radius: 1em;
+        padding: 1em;
+        margin-left: 2em;
+        transition: .3s ease all;
+
+    }
+
+    .color3 {
+        background: #feffce;
+    }
+
+    .color4 {
+        background: #ade8f3;
+        border-radius: 1em;
+        padding: 3px;
+        border: 4px solid #264d53;
+    }
+
+    .color1 {
+        color: rgb(32, 151, 16);
+    }
+
+    .color2 {
+        color: rgb(0, 68, 3);
+    }
+
+    .box:hover {
+        background: rgb(79, 123, 209);
+    }
+
+    .presente {
+        background-color: var(--hovercolor);
+        border-left: 3px solid #90dddd;
+    }
+    
+</style>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://i.postimg.cc/nVqJcPRM/Logo-Eco-Mind-SOLO-IMAGEN-SIN-CIRCULO.png">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title> Home - EcoMind</title>
+</head>
+
+<body>
+    <div id="sidemenu" class="menu-collapsed">
+        <div id="header">
+
+            <div id="menu-btn">
+                <div id="btn1" class="btn-hamburger"></div>
+                <div id="btn2" class="btn-hamburger"></div>
+                <div id="btn3" class="btn-hamburger"></div>
+            </div>
+        </div>
+        <div id="profile">
+            <div id="photo"><img src="https://i.postimg.cc/c4L0XSpB/Logo-Eco-Mind-C-rculo.png" alt=""> </div>
+        </div>
+        <div id="menu-items">
+            <div class="item borde presente" id="inicio">
+                <a href="/">
+                    <div class="icon"><abbr title="Inicio"><img style="padding-top:0.5em; padding-bottom:0.5em;"
+                                src="https://i.postimg.cc/TYxBbG2z/2544087.png" alt=""></abbr></div>
+                    <div class="title" style="margin-top: 0.5em;">
+                        <span2>
+                            <h6>
+                                <font face="Poppins">Inicio</font>
+                            </h6>
+                        </span2>
+                    </div>
+                </a>
+            </div>
+            <div class="item separator borde" id="tagging">
+                <a href="../etiquetado/">
+                    <div class="icon"><abbr title="Etiquetado de residuos"><img
+                                style="padding-top:0.5em; padding-bottom:0.5em;"
+                                src="https://i.postimg.cc/sfc4pTbD/etiqueta.png" alt=""></abbr></div>
+                    <div class="title" style="margin-top: 0.5em;">
+                        <span2>
+                            <h6>
+                                <font face="Poppins">Etiquetado de residuos</font>
+                            </h6>
+                        </span2>
+                    </div>
+                </a>
+            </div>
+            <div class="item separator borde" id="classify">
+                <a href="../clasificado/">
+                    <div class="icon"><abbr title="Clasificado de residuos"><img
+                                style="padding-top:0.5em; padding-bottom:0.5em;"
+                                src="https://i.postimg.cc/PrM9zcPP/3320628.png" alt=""></abbr></div>
+                    <div class="title" style="margin-top: 0.5em;">
+                        <span2>
+                            <h6>
+                                <font face="Poppins">Clasificado de residuos</font>
+                            </h6>
+                        </span2>
+                    </div>
+                </a>
+            </div>
+            <div class="item separator borde" id="activity">
+                <a href="../mi_actividad/">
+                    <div class="icon"><abbr title="Mi actividad"><img style="padding-top:0.5em; padding-bottom:0.5em;"
+                                src="https://i.postimg.cc/q7PT9jv1/tiempo.png" alt=""></abbr></div>
+                    <div class="title" style="margin-top: 0.5em;">
+                        <span2>
+                            <h6>
+                                <font face="Poppins">Mi actividad</font>
+                            </h6>
+                        </span2>
+                    </div>
+                </a>
+            </div>
+
+            <div class="item separator borde" id="points">
+                <a href="../mis_puntos/">
+                    <div class="icon"><abbr title="Mis Puntos"><img style="padding-top:0.5em; padding-bottom:0.5em;"
+                                src="https://i.postimg.cc/pVzgyyvQ/1140033.png" alt=""></abbr></div>
+                    <div class="title" style="margin-top: 0.5em;">
+                        <span2>
+                            <h6>
+                                <font face="Poppins">Mis Puntos</font>
+                            </h6>
+                        </span2>
+                    </div>
+                </a>
+            </div>
+
+            <div class="item separator borde" id="store">
+                <a href="../store/">
+                    <div class="icon"><abbr title="Tienda"><img style="padding-top:0.5em; padding-bottom:0.5em;"
+                                src="https://i.postimg.cc/HkhBywmC/tienda.png" alt=""></abbr></div>
+                    <div class="title" style="margin-top: 0.5em;">
+                        <span2>
+                            <h6>
+                                <font face="Poppins">Tienda</font>
+                            </h6>
+                        </span2>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <nav class="fondoColor alinear posicion"><span><a href="../creditos/"><img width=4% title="Créditos" style="margin-top:12px;padding-right:10px" class="logo" src="https://i.postimg.cc/hv0HdXjF/3020135683-41c68d66f7-w.png" alt=""></a></span>
+        <span><a href="../logout/"><img width=3% class="logo2" title="Cerrar sesión"
+                    src="https://cdn-icons-png.flaticon.com/512/1828/1828490.png" alt=""></a></span>
+        <span><a href="/"><img width=13% class="logo" src="https://i.postimg.cc/Z51mbyCw/Logo-Eco-Mind-Cilindro.png"
+                    alt=""></a></span>
+        <span>
+            <a href=""><abbr class="espacios" title="¡Llámanos o escríbenos!">
+                    <font face="Poppins">Contáctenos</font>
+                </abbr></a>
+            <a href=""><abbr class="espacios" title="¡Conócenos!">
+                    <font face="Poppins">Quiénes somos</font>
+                </abbr></a>
+            <a href=""><abbr class="espacios" title="¿Qué ofrecemos en EcoMind?">
+                    <font face="Poppins">Servicios</font>
+                </abbr></a>
+            <a href="/"><abbr class="espacios" title="Regresa a la pantalla de inicio">
+                    <font face="Poppins">Inicio</font>
+                </abbr></a>
+        </span>
+    </nav>
+
+    <div class="" style="text-align: center; padding-top:3.5em;">
+        <img style="box-shadow: 0px 3px 5px rgb(0, 0, 0)" width=1070
+            src="https://i.postimg.cc/PxK33BDB/Logo-Eco-Mind-Barra-Ppal.png" border="0px">
+    </div>
+    <div style="padding-top:2em;">
+        <div>
+            <h2 align="center" style="padding-bottom:0.5em;"><b>
+                    <font face="Poppins"> {{nombre}}, ¡Bienvenid@ a <b class="color1">Eco</b><b class="color2">Mind!
+                        </b></font>
+            </h2>
+        </div>
+
+        <div style="padding-bottom: 15px; padding-left:13em; padding-right: 13em;">
+            <div class="color4 borde1" style="padding: 1em;">
+                <div>
+                    <h4 align="center" class="center titulo5 mt-4 mb-4">
+                        <font face="Poppins" color="#0000">Gracias por contar con nosotros en la búsqueda de un futuro
+                            más sostenible y ecológicamente amigable.</font>
+                    </h4>
+                    <h4 align="center" class="center titulo5 mt-4 mb-4">
+                        <font face="Poppins" color="#0000">A través de esta página podrás realizar un seguimiento los
+                            puntos que has obtenido 🎁, revisar la cantidad de residuos recogidos usando el sistema ♻️,
+                            y ver tu historial de uso del sistema <b class="color1">Eco</b><b class="color2">Mind</b> ⌚.
+                        </font>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding-left: 12em; padding-top: 25px; padding-bottom:25px;">
+
+
+
+
+
+
+            <table style="text-align:center">
+                <tr>
+                    <th><a id="etiquetado1" href="../etiquetado/">
+                            <img class="box" id="etiquetado2" width="150" alt="WhatsApp Logo"
+                                src="https://i.postimg.cc/sfc4pTbD/etiqueta.png" /></a></th>
+                    <th><a id="clasificado1" href="../clasificado/">
+                            <img class="box" id="clasificado2" width="150" alt="WhatsApp Logo"
+                                src="https://i.postimg.cc/PrM9zcPP/3320628.png" /></a></th>
+                    <th><a id="actividad1" href="../mi_actividad/">
+                            <img class="box" id="actividad2" width="150" alt="WhatsApp Logo"
+                                src="https://i.postimg.cc/q7PT9jv1/tiempo.png" /></a></th>
+
+                    <th><a id="puntos1" href="../mis_puntos/">
+                            <img class="box" id="puntos2" width="150" alt="WhatsApp Logo"
+                                src="https://i.postimg.cc/pVzgyyvQ/1140033.png" /></a></th>
+
+
+                    <th><a id="filtrar1" href="../store/">
+                            <img class="box" id="filtrar2" width="150" alt="WhatsApp Logo"
+                                src="https://i.postimg.cc/HkhBywmC/tienda.png" /></a></th>
+
+                </tr>
+                <tr>
+                    <th style="padding-left:1.5em; padding-top: 1em; font-size: 23;">
+                        <font face="Poppins" color="#0000" id="etiquetado">Etiquetado <br>de residuos</font>
+                    </th>
+                    <th style="padding-left:1.5em; padding-top: 1em; font-size: 23;">
+                        <font face="Poppins" color="#0000" id="clasificado">Clasificado <br>de residuos</font>
+                    </th>
+                    <th style="padding-left:1.5em; font-size: 23;">
+                        <font face="Poppins" color="#0000" id="actividad">Mi actividad</font>
+                    </th>
+
+                    <th style="padding-left:1.5em; font-size: 23;">
+                        <font face="Poppins" color="#0000" id="puntos">Mis Puntos</font>
+                    </th>
+                    
+                    <th style="padding-left:1.5em; font-size: 23;">
+                        <font face="Poppins" color="#0000" id="filtrar">Tienda</font>
+                    </th>
+                </tr>
+
+
+            </table>
+
+
+
+
+
+
+
+
+
+        </div>
+        <div style="padding-left:10em; padding-right: 13em; padding-top: 3em; padding-bottom: 4em;">
+            <table>
+                <tr>
+                    <th><img width="100%" src="https://i.postimg.cc/66kCL0b9/Frase-Eco-Mind.png"></th>
+                    <th><img width="550" 
+                            src="https://i.postimg.cc/VLhTcQhw/Logo-Eco-Mind-Original.png"></th>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.querySelector('#menu-btn');
+        const btn1 = document.querySelector('#btn1');
+        const btn2 = document.querySelector('#btn2');
+        const btn3 = document.querySelector('#btn3');
+        const menu = document.querySelector('#sidemenu');
+        btn.addEventListener('click', e => {
+            if (btn1.style.transform == 'rotate(45deg)' && btn3.style.transform == 'rotate(-45deg)') {
+                btn.style.marginTop = '0px';
+                btn1.style.transform = 'rotate(180deg)';
+                btn2.style.background = 'white';
+                btn1.style.marginBottom = '0px';
+                btn3.style.transform = 'rotate(180deg)';
+                btn3.style.marginTop = '0px';
+                btn.style.marginBottom = '0px';
+            } else {
+                btn.style.marginTop = '8px';
+                btn.style.marginBottom = '4px';
+                btn1.style.transform = 'rotate(45deg)';
+                btn2.style.background = 'transparent';
+                btn1.style.marginBottom = '-6px';
+                btn3.style.transform = 'rotate(-45deg)';
+                btn3.style.marginTop = '-8px';
+
+            }
+
+            menu.classList.toggle("menu-expanded");
+            menu.classList.toggle("menu-collapsed");
+            document.querySelector('body').classList.toggle('body-expanded');
+        });
+
+
+
+
+        const color = '#243c69';
+        const home = document.querySelector('#inicio');
+        const activity = document.querySelector('#activity');
+        const points = document.querySelector('#points');
+        const tagging = document.querySelector('#tagging');
+        const classify = document.querySelector('#classify');
+        const store = document.querySelector('#store');
+
+        points.addEventListener('mousemove', e => {
+            home.style.transition = '.4s ease all';
+            home.style.backgroundColor = '#193235';
+        });
+
+        points.addEventListener('mouseout', e => {
+            home.style.transition = '.4s ease all';
+            home.style.backgroundColor = '#0f1f20';
+        });
+
+        activity.addEventListener('mousemove', e => {
+            home.style.transition = '.4s ease all';
+            home.style.backgroundColor = '#193235';
+        });
+
+        activity.addEventListener('mouseout', e => {
+            home.style.transition = '.4s ease all';
+            home.style.backgroundColor = '#0f1f20';
+        });
+
+        tagging.addEventListener('mousemove', e => {
+            home.style.transition = '.4s ease all';
+            home.style.backgroundColor = '#193235';
+        });
+
+        tagging.addEventListener('mouseout', e => {
+            home.style.transition = '.4s ease all';
+            home.style.backgroundColor = '#0f1f20';
+        });
+
+        classify.addEventListener('mousemove', e => {
+            home.style.transition = '.4s ease all';
+            home.style.backgroundColor = '#193235';
+        });
+
+        classify.addEventListener('mouseout', e => {
+            home.style.transition = '.4s ease all';
+            home.style.backgroundColor = '#0f1f20';
+        });
+
+        store.addEventListener('mousemove', e => {
+            home.style.transition = '.4s ease all';
+            home.style.backgroundColor = '#193235';
+        });
+
+        store.addEventListener('mouseout', e => {
+            home.style.transition = '.4s ease all';
+            home.style.backgroundColor = '#0f1f20';
+        });
+
+
+
+        const colorA = '#243c69';
+        const actividad1 = document.querySelector('#actividad1');
+        const actividad = document.querySelector('#actividad');
+        actividad1.addEventListener('mousemove', e => {
+            actividad.style.transition = '.4s ease all';
+            actividad.style.color = colorA;
+            actividad1.style.width = '156px';
+            actividad1.style.height = 'auto';
+        });
+        actividad1.addEventListener('mouseout', e => {
+            actividad.style.transition = '.4s ease all';
+            actividad.style.color = '#000';
+        });
+
+        const filtrar1 = document.querySelector('#filtrar1');
+        const filtrar = document.querySelector('#filtrar');
+        filtrar1.addEventListener('mousemove', e => {
+            filtrar.style.transition = '.4s ease all';
+            filtrar.style.color = colorA;
+        });
+        filtrar1.addEventListener('mouseout', e => {
+            filtrar.style.transition = '.4s ease all';
+            filtrar.style.color = '#000';
+        });
+
+        const puntos1 = document.querySelector('#puntos1');
+        const puntos = document.querySelector('#puntos');
+        puntos1.addEventListener('mousemove', e => {
+            puntos.style.transition = '.4s ease all';
+            puntos.style.color = colorA;
+        });
+        puntos1.addEventListener('mouseout', e => {
+            puntos.style.transition = '.4s ease all';
+            puntos.style.color = '#000';
+        });
+
+        const clasificado1 = document.querySelector('#clasificado1');
+        const clasificado = document.querySelector('#clasificado');
+        clasificado1.addEventListener('mousemove', e => {
+            clasificado.style.transition = '.4s ease all';
+            clasificado.style.color = colorA;
+        });
+        clasificado1.addEventListener('mouseout', e => {
+            clasificado.style.transition = '.4s ease all';
+            clasificado.style.color = '#000';
+        });
+
+        const etiquetado1 = document.querySelector('#etiquetado1');
+        const etiquetado = document.querySelector('#etiquetado');
+        etiquetado1.addEventListener('mousemove', e => {
+            etiquetado.style.transition = '.4s ease all';
+            etiquetado.style.color = colorA;
+        });
+        etiquetado1.addEventListener('mouseout', e => {
+            etiquetado.style.transition = '.4s ease all';
+            etiquetado.style.color = '#000';
+        });
+
+
+    </script>
+</body>
+
+</html>
