@@ -367,7 +367,7 @@
                     </div>
                 </a>
             </div>
-            {% if "/etiquetado" in request.path %}
+            {% if "/etiquetado" in request.path or "/realizar_etiquetado" in request.path or "/etiqueta_exito" in request.path %}
             <div class="item borde presente" id="tagging">
             {% else %}
             <div class="item separator borde" id="tagging">
@@ -385,7 +385,11 @@
                     </div>
                 </a>
             </div>
+            {% if "/clasificado" in request.path %}
+            <div class="item borde presente" id="classify">
+            {% else %}
             <div class="item separator borde" id="classify">
+            {% endif %}
                 <a href="../clasificado/">
                     <div class="icon"><abbr title="Clasificado de residuos"><img
                                 style="padding-top:0.5em; padding-bottom:0.5em;"
@@ -399,7 +403,11 @@
                     </div>
                 </a>
             </div>
+            {% if "/mi_actividad" in request.path %}
+            <div class="item borde presente" id="activity">
+            {% else %}
             <div class="item separator borde" id="activity">
+            {% endif %}
                 <a href="../mi_actividad/">
                     <div class="icon"><abbr title="Mi actividad"><img style="padding-top:0.5em; padding-bottom:0.5em;"
                                 src="https://i.postimg.cc/q7PT9jv1/tiempo.png" alt=""></abbr></div>
@@ -413,7 +421,11 @@
                 </a>
             </div>
 
+            {% if "/mis_puntos" in request.path %}
+            <div class="item borde presente" id="points">
+            {% else %}
             <div class="item separator borde" id="points">
+            {% endif %}
                 <a href="../mis_puntos/">
                     <div class="icon"><abbr title="Mis Puntos"><img style="padding-top:0.5em; padding-bottom:0.5em;"
                                 src="https://i.postimg.cc/pVzgyyvQ/1140033.png" alt=""></abbr></div>
@@ -427,7 +439,11 @@
                 </a>
             </div>
 
+            {% if "/store" in request.path %}
+            <div class="item borde presente" id="store">
+            {% else %}
             <div class="item separator borde" id="store">
+            {% endif %}
                 <a href="../store/">
                     <div class="icon"><abbr title="Tienda"><img style="padding-top:0.5em; padding-bottom:0.5em;"
                                 src="https://i.postimg.cc/HkhBywmC/tienda.png" alt=""></abbr></div>
@@ -441,7 +457,11 @@
                 </a>
             </div>
 
+            {% if "/creditos" in request.path %}
+            <div class="item borde presente" id="store">
+            {% else %}
             <div class="item separator borde" id="store">
+            {% endif %}
                 <a href="../creditos/">
                     <div class="icon"><abbr title="Tienda"><img style="padding-top:0.5em; padding-bottom:0.5em;"
                                 src="https://i.postimg.cc/hv0HdXjF/3020135683-41c68d66f7-w.png" alt=""></abbr></div>
