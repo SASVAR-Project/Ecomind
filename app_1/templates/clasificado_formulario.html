@@ -1,866 +1,317 @@
+{% extends 'layouts/base.html' %} 
+{% block content %}
+
 <style>
-    :root {
-        --width: 300px;
-        --padding: 10px;
-        --bgcolor: #193235;
-        --hovercolor: #0f1f20;
-        --width-collapsed: 50px;
-    }
-
-    body {
-        background: url(https://i.postimg.cc/284ZrdcS/Imagen7.png);
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-
-        font-family: 'Poppins';
-        font-size: 22px;
-        padding: 0;
-        margin: 0;
-        margin-left: var(--width-collapsed);
-    }
-
-    #main-container {
-        color: white;
-    }
-
-
-    #sidemenu {
-        background-color: var(--bgcolor);
-        color: white;
-        position: fixed;
-        height: 100%;
-        z-index: 3;
-        left: 0;
-        top: 0;
-    }
-
-    #sidemenu a {
-        color: white;
-        text-decoration: none;
-    }
-
-    .colorPunto {
-        color: #c8ff70;
-        ;
-    }
-
-    #sidemenu #header {
-        box-sizing: border-box;
-        border-bottom: solid 3px var(--hovercolor);
-    }
-
-    #sidemenu #header #title {
-        box-sizing: border-box;
-        overflow: hidden;
-    }
-
-    #sidemenu #header #title,
-    #sidemenu #header #menu-btn {
-        vertical-align: middle;
-    }
-
-    #sidemenu #header #menu-btn {
-        cursor: pointer;
-        padding: 10px;
-        width: var(--width-collapsed);
-        box-sizing: border-box;
-    }
-
-    #sidemenu #header #menu-btn :hover {
-        background-color: var(--hovercolor);
-    }
-
-    #sidemenu #header #menu-btn .btn-hamburger {
-        background-color: #fff;
-        width: 100%;
-        height: 2px;
-        margin: 5px 0;
-        transition: .4s ease all;
-    }
-
-
-    #sidemenu #profile {
-        border-bottom: solid 3px var(--hovercolor);
-        padding: var(--padding) 0;
-        text-align: center;
-    }
-
-    #sidemenu #profile #photo {
-        box-sizing: border-box;
-        padding: var(--padding);
-        margin: 0 auto;
-
-    }
-
-    #sidemenu #profile #photo img {
-        width: 70%;
-    }
-
-    #sidemenu #profile #photo,
-    #sidemenu #profile #name {
-        font-size: 24px;
-        padding: var(--padding) 0;
-        overflow: hidden;
-    }
-
-    #sidemenu #menu-items {
-        overflow: hidden;
-    }
-
-    #sidemenu #menu-items .item {
-        width: var(--width);
-    }
-
-    #sidemenu #menu-items .item .icon {
-        display: inline-block;
-    }
-
-    #sidemenu #menu-items .item .icon,
-    #sidemenu #menu-items .item .title {
-        font-size: 14px;
-        vertical-align: middle;
-        overflow: hidden;
-        display: inline-block;
-    }
-
-    #sidemenu #menu-items .item a {
-        display: block;
-        transition: .3s ease all;
-    }
-
-    #sidemenu #menu-items .item a:hover {
-        background-color: var(--hovercolor);
-        transition: .4s ease all;
-
-    }
-
-    .presente {
-        background-color: var(--hovercolor);
-        border-left: 3px solid #90dddd;
-    }
-
-    #sidemenu #menu-items .item .icon {
-        box-sizing: border-box;
-        padding: var(--padding);
-        width: var(--width-collapsed);
-        cursor: pointer;
-    }
-
-    #sidemenu #menu-items .item .icon img {
-        width: 100%;
-        cursor: pointer;
-    }
-
-    #sidemenu #menu-items .item .title {
-        padding: var(--padding) 0;
-    }
-
-    #sidemenu #menu-items .item .separator {
-        height: 1px;
-        border-bottom: solid 3px var(--hovercolor);
-        margin: 15px 0;
-    }
-
-    #sidemenu #menu-items .borde {
-        border-bottom: solid 3px #0f1f20;
-        ;
-    }
-
-    .menu-expanded {
-        width: var(--width);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        transition: .3s ease all;
-    }
-
-    .menu-expanded #header #title {
-        display: inline-block;
-        width: calc(100% - 50px);
-        margin-right: -5px;
-        padding: var(--padding);
-    }
-
-    .menu-expanded #header #title span2 {
-        width: calc(var(--width) - var(--width-collapsed) - 5px);
-        overflow: hidden;
-        transition: .3s ease all;
-    }
-
-    .menu-expanded #profile #photo {
-        width: 80%;
-        transition: .3s ease all;
-    }
-
-    .menu-expanded #profile #name {
-        width: 100%;
-        transition: .3s ease all;
-    }
-
-    .menu-collapsed {
-        width: var(--width-collapsed);
-        transition: .3s ease all;
-    }
-
-    .menu-collapsed #header #title {
-        width: 0;
-        height: 0;
-        padding: 0;
-        margin: 0;
-        transition: .3s ease all;
-    }
-
-    .menu-collapsed #profile #name {
-        display: none;
-        transition: .3s ease all;
-    }
-
-    .menu-collapsed .item {
-        width: 100px;
-        transition: .3s ease all;
-    }
-
-    .fondoColor {
-        background-color: #204044;
-        height: 57px;
-        box-shadow: 0 3px 5px rgba(0, 0, 0);
-    }
-
-    .alinear {
-        text-align: right;
-    }
-
-    .espacios {
-        margin-left: 8px;
-        float: right;
-        padding: 0.8em;
-        color: #fff;
-        font-size: 18px;
-        text-decoration: none;
-        background: #1b363a;
-        transition: .3s ease all;
-    }
-
-    .logo {
-        float: right;
-        padding-top: 6px;
-        padding-right: 22px;
-        padding-left: 20px;
-        color: #fff;
-    }
-
-    .logo2 {
-        float: right;
-        padding-top: 6px;
-        padding-right: 5px;
-        padding-left: 0px;
-        margin-right: 0.6em;
-        margin-top: 0.3em;
-        color: #fff;
-    }
-
-    .fondoColor2 {
-        box-shadow: 0 3px 5px rgba(0, 0, 0);
-    }
-
-    .espacios:hover {
-
-        background: #152b2e;
-        cursor: pointer;
-    }
-
-    .centrado {
-        padding-top: 1em;
-        padding-right: 3em;
-        padding-left: 3em;
-    }
-
-    .posicion {
-        position: fixed;
-    }
-
-    .centrado2 {
-        padding-left: 19.5em;
-    }
-
-    .box {
-        border: 7px solid rgb(63, 91, 145);
-        background: #91d3ff;
-        border-radius: 1em;
-        padding: 1em;
-        margin-left: 3em;
-
-    }
-
-    .color3 {
-        background: #fdff86;
-    }
-
-    .color4 {
-        background: #ffd986;
-    }
-
-    .color1 {
-        color: rgb(32, 151, 16);
-    }
-
-    .color2 {
-        color: rgb(0, 68, 3);
-    }
-
-    .textoCentrado {
-        padding-left: 11.7em;
-    }
-
-    .color4 {
-        background: #ade8f3;
-        border-radius: 1em;
-        padding: 3px;
-        border: 4px solid #264d53;
-    }
-
-    table,
-    th,
-    td {
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        padding: 10px;
-        border: 3px solid #264d53;
-        background: #70c6ff;
-
-
-    }
-
-    th {
-
-        border: 3px solid #0b98ad;
-        background: #0094b9;
-    }
-
-
-    td {
-        background: none;
-    }
-
-    .presente {
-        background-color: var(--hovercolor);
-        border-left: 3px solid #90dddd;
-    }
+table,
+th,
+td {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 22px;
+    padding: 10px;
+    border: 1px solid rgb(255, 123, 0);
+}
+
+th {
+    background: #ffbe30;
+}
+
+td {
+    background: #ffd986;
+}
+
+.presente {
+    background-color: var(--hovercolor);
+    border-left: 3px solid #90dddd;
+}
 </style>
 
-<!DOCTYPE html>
-<html lang="es">
+<div style="padding-left: 12em; margin-top: 9px;">
+    <img style="box-shadow: 0px 3px 5px rgb(0, 0, 0)" width=88.5% src="https://i.postimg.cc/BvpB42vF/Logo-Eco-Mind-Barra-Secundaria.png"
+        border="0px">
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://i.postimg.cc/nVqJcPRM/Logo-Eco-Mind-SOLO-IMAGEN-SIN-CIRCULO.png">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script defer src="../static/main2.js"></script>
-    <title> Clasificado - EcoMind</title>
-</head>
-
-<body>
-    <div id="sidemenu" class="menu-collapsed">
-        <div id="header">
-
-            <div id="menu-btn">
-                <div id="btn1" class="btn-hamburger"></div>
-                <div id="btn2" class="btn-hamburger"></div>
-                <div id="btn3" class="btn-hamburger"></div>
-            </div>
-        </div>
-        <div id="profile">
-            <div id="photo"><img src="https://i.postimg.cc/c4L0XSpB/Logo-Eco-Mind-C-rculo.png" alt=""></div>
-        </div>
-        <div id="menu-items">
-            <div class="item borde" id="inicio">
-                <a href="/">
-                    <div class="icon"><abbr title="Inicio"><img style="padding-top:0.5em; padding-bottom:0.5em;"
-                                src="https://i.postimg.cc/TYxBbG2z/2544087.png" alt=""></abbr></div>
-                    <div class="title" style="margin-top: 0.5em;">
-                        <span2>
-                            <h6>
-                                <font face="Poppins">Inicio</font>
-                            </h6>
-                        </span2>
-                    </div>
-                </a>
-            </div>
-            <div class="item separator borde" id="tagging">
-                <a href="../etiquetado/">
-                    <div class="icon"><abbr title="Etiquetado de Residuos"><img
-                                style="padding-top:0.5em; padding-bottom:0.5em;"
-                                src="https://i.postimg.cc/sfc4pTbD/etiqueta.png" alt=""></abbr></div>
-                    <div class="title" style="margin-top: 0.5em;">
-                        <span2>
-                            <h6>
-                                <font face="Poppins">Etiquetado de Residuos</font>
-                            </h6>
-                        </span2>
-                    </div>
-                </a>
-            </div>
-            <div class="item separator borde presente" id="classify">
-                <a href="../clasificado/">
-                    <div class="icon"><abbr title="Clasificado de residuos"><img
-                                style="padding-top:0.5em; padding-bottom:0.5em;"
-                                src="https://i.postimg.cc/PrM9zcPP/3320628.png" alt=""></abbr></div>
-                    <div class="title" style="margin-top: 0.5em;">
-                        <span2>
-                            <h6>
-                                <font face="Poppins">Clasificado de residuos</font>
-                            </h6>
-                        </span2>
-                    </div>
-                </a>
-            </div>
-            <div class="item separator borde" id="activity">
-                <a href="../mi_actividad/">
-                    <div class="icon"><abbr title="Mi actividad"><img style="padding-top:0.5em; padding-bottom:0.5em;"
-                                src="https://i.postimg.cc/q7PT9jv1/tiempo.png" alt=""></abbr></div>
-                    <div class="title" style="margin-top: 0.5em;">
-                        <span2>
-                            <h6>
-                                <font face="Poppins">Mi actividad</font>
-                            </h6>
-                        </span2>
-                    </div>
-                </a>
-            </div>
-            <div class="item separator borde" id="points">
-                <a href="../mis_puntos/">
-                    <div class="icon"><abbr title="Mis puntos"><img style="padding-top:0.5em; padding-bottom:0.5em;"
-                                src="https://i.postimg.cc/pVzgyyvQ/1140033.png" alt=""></abbr></div>
-                    <div class="title" style="margin-top: 0.5em;">
-                        <span2>
-                            <h6>
-                                <font face="Poppins">Mis Puntos</font>
-                            </h6>
-                        </span2>
-                    </div>
-                </a>
-            </div>
-            
-            <div class="item separator borde">
-                <a href="../store/">
-                    <div class="icon"><abbr title="Tienda"><img style="padding-top:0.5em; padding-bottom:0.5em;"
-                                src="https://i.postimg.cc/HkhBywmC/tienda.png" alt=""></abbr></div>
-                    <div class="title" style="margin-top: 0.5em;">
-                        <span2>
-                            <h6>
-                                <font face="Poppins">Tienda</font>
-                            </h6>
-                        </span2>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-    </div>
-    <script>
-
-        const home = document.querySelector('#inicio');
-        const activity = document.querySelector('#activity');
-        const points = document.querySelector('#points');
-        const tagging = document.querySelector('#tagging');
-        const classify = document.querySelector('#classify');
-        const store = document.querySelector('#store');
-
-        points.addEventListener('mousemove', e => {
-            classify.style.transition = '.4s ease all';
-            classify.style.backgroundColor = '#193235';
-        });
-
-        points.addEventListener('mouseout', e => {
-            classify.style.transition = '.4s ease all';
-            classify.style.backgroundColor = '#0f1f20';
-        });
-
-        activity.addEventListener('mousemove', e => {
-            classify.style.transition = '.4s ease all';
-            classify.style.backgroundColor = '#193235';
-        });
-
-        activity.addEventListener('mouseout', e => {
-            classify.style.transition = '.4s ease all';
-            classify.style.backgroundColor = '#0f1f20';
-        });
-
-        tagging.addEventListener('mousemove', e => {
-            classify.style.transition = '.4s ease all';
-            classify.style.backgroundColor = '#193235';
-        });
-
-        tagging.addEventListener('mouseout', e => {
-            classify.style.transition = '.4s ease all';
-            classify.style.backgroundColor = '#0f1f20';
-        });
-
-        home.addEventListener('mousemove', e => {
-            classify.style.transition = '.4s ease all';
-            classify.style.backgroundColor = '#193235';
-        });
-
-        home.addEventListener('mouseout', e => {
-            classify.style.transition = '.4s ease all';
-            classify.style.backgroundColor = '#0f1f20';
-        });
-
-        store.addEventListener('mousemove', e => {
-            classify.style.transition = '.4s ease all';
-            classify.style.backgroundColor = '#193235';
-        });
-
-        store.addEventListener('mouseout', e => {
-            classify.style.transition = '.4s ease all';
-            classify.style.backgroundColor = '#0f1f20';
-        });
-
-        const btn = document.querySelector('#menu-btn');
-        const btn1 = document.querySelector('#btn1');
-        const btn2 = document.querySelector('#btn2');
-        const btn3 = document.querySelector('#btn3');
-        const menu = document.querySelector('#sidemenu');
-        btn.addEventListener('click', e => {
-            if (btn1.style.transform == 'rotate(45deg)' && btn3.style.transform == 'rotate(-45deg)') {
-                btn.style.marginTop = '0px';
-                btn1.style.transform = 'rotate(180deg)';
-                btn2.style.background = 'white';
-                btn1.style.marginBottom = '0px';
-                btn3.style.transform = 'rotate(180deg)';
-                btn3.style.marginTop = '0px';
-                btn.style.marginBottom = '0px';
-            } else {
-                btn.style.marginTop = '8px';
-                btn.style.marginBottom = '4px';
-                btn1.style.transform = 'rotate(45deg)';
-                btn2.style.background = 'transparent';
-                btn1.style.marginBottom = '-6px';
-                btn3.style.transform = 'rotate(-45deg)';
-                btn3.style.marginTop = '-8px';
-
-            }
-
-            menu.classList.toggle("menu-expanded");
-            menu.classList.toggle("menu-collapsed");
-            document.querySelector('body').classList.toggle('body-expanded');
-        });
-    </script>
-    <nav class="fondoColor alinear posicion"><span><a href="../creditos/"><img width=4% title="Créditos" style="margin-top:12px;padding-right:10px" class="logo" src="https://i.postimg.cc/hv0HdXjF/3020135683-41c68d66f7-w.png" alt=""></a></span>
-        <span><span><a href="../logout/"><img width=3% class="logo2" title="Cerrar sesión"
-                        src="https://cdn-icons-png.flaticon.com/512/1828/1828490.png" alt=""></a></span>
-            <span><a href="/"><img width=13% class="logo" src="https://i.postimg.cc/Z51mbyCw/Logo-Eco-Mind-Cilindro.png"
-                        alt=""></a></span>
-            <span>
-                <a href=""><abbr class="espacios" title="¡Llámanos o escríbenos!">
-                        <font face="Poppins">Contáctenos</font>
-                    </abbr></a>
-                <a href=""><abbr class="espacios" title="¡Conócenos!">
-                        <font face="Poppins">Quiénes somos</font>
-                    </abbr></a>
-                <a href=""><abbr class="espacios" title="¿Qué ofrecemos en EcoMind?">
-                        <font face="Poppins">Servicios</font>
-                    </abbr></a>
-                <a href="/"><abbr class="espacios" title="Regresa a la pantalla de inicio">
-                        <font face="Poppins">Inicio</font>
-                    </abbr></a>
-            </span>
-    </nav>
-    <div class="colorPunto">
-        .
-    </div>
-    <div class="colorPunto">
-        .
+<div style="padding-top:2em; padding-bottom: 2em;">
+    <div style="padding-bottom: 1em;">
+        <h2 style="text-align:center;"><b>
+                <font face=Poppins> ¡Bienvenid@ a <b class="color1"> Clasificado por formulario! </font>
+            </b></h2>
     </div>
 
-    <div style="padding-left: 8.8em; margin-top: 9px;">
-        <img style="box-shadow: 0px 3px 5px rgb(0, 0, 0)" width=88.5% src="https://i.postimg.cc/BvpB42vF/Logo-Eco-Mind-Barra-Secundaria.png"
-            border="0px">
-    </div>
-    <div style="padding-top:2em; padding-bottom: 2em;">
-        <div style="padding-bottom: 1em;">
-            <h2 style="text-align:center;"><b>
-                    <font face=Poppins> ¡Bienvenid@ a <b class="color1"> Clasificado por formulario! </font>
-                </b></h2>
-        </div>
+    <div style="padding-left: 2em; padding-bottom: 1em">
 
-        <div style="padding-left: 2em; padding-bottom: 1em">
+        <form action="../clasificado_formulario/#success" method="POST">
+            {% csrf_token %}
 
-            <form action="../clasificado_formulario/#success" method="POST">
-                {% csrf_token %}
+            <div style="padding-left:9em; padding-right: 11em;">
+                <table class="table-bordered">
+                    <tr style="border: 3px solid #264d53;">
+                        <th style="border: 3px solid #264d53;">
+                            <h5>
+                                <font face="Poppins" color="#0000"><b>Material</b></font> <img width=40
+                                    style="margin-left:0.2em;"
+                                    src="https://cdn-icons-png.flaticon.com/512/4660/4660970.png" alt="">
+                            </h5>
+                        </th>
+                        <th>
+                            <h5>
+                                <font face="Poppins" color="#0000"><b>Color empaque</b></font> <img width=35
+                                    style="margin-left:0.2em;"
+                                    src="https://cdn-icons-png.flaticon.com/512/291/291029.png" alt="">
+                            </h5>
+                        </th>
+                        <th style="border: 3px solid #264d53;">
+                            <h5>
+                                <font face="Poppins" color="#0000"><b>Tipo empaque</b></font><img width=35
+                                    style="margin-left:0.2em;"
+                                    src="https://cdn-icons-png.flaticon.com/512/1585/1585223.png" alt="">
+                            </h5>
 
-                <div style="padding-left:9em; padding-right: 11em;">
+                        </th>
+                        <th style="border: 3px solid #264d53;">
+                            <h5>
+                                <font face="Poppins" color="#0000"><b>Tapa botella</b></font> <img width=35
+                                    style="margin-left:0.2em;"
+                                    src="https://cdn-icons-png.flaticon.com/512/7030/7030752.png" alt="">
+                            </h5>
+                        </th>
+                        <th style="border: 3px solid #264d53;">
+                            <h5>
+                                <font face="Poppins" color="#0000"><b>Capacidad (ml)</b> <img width=35
+                                        style="margin-left:0.2em;"
+                                        src="https://cdn-icons-png.flaticon.com/512/1000/1000227.png" alt=""></font>
+                            </h5>
+
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="border: 3px solid #264d53;">
+                            <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
+                                aria-label="size 4 select example" name="material" id="material" required>
+
+
+                                <option value="PET">PET</option>
+                                <option value="PE-HD">PE-HD</option>
+                                <option value="PVC">PVC</option>
+                                <option value="PE-LD">PE-LD</option>
+                                <option value="PP">PP</option>
+                                <option value="PS">PS</option>
+                                <option value="Other plastic">Otro plástico</option>
+                                <option value="Glass">Vidrio</option>
+                                <option value="Aluminium">Aluminio</option>
+                                <option value="Other metal">Otro metal</option>
+                                <option value="Cardboard">Cartón</option>
+                                <option value="Paper print">Papel de impresión</option>
+                                <option value="Newspaper">Periódico</option>
+                                <option value="Magazine">Revista</option>
+                                <option value="Tetrapack">Tetrapack</option>
+                                <option value="Other">Otro</option>
+                            </select>
+                        </td>
+                        <td style="border: 3px solid #264d53;">
+                            <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
+                                aria-label="size 4 select example" name="package_color" id="package_color" required>
+
+                                <option selected value="N/A">N/A (No aplica)</option>
+                                <option value="Clear transparent">Transparente claro</option>
+                                <option value="White transparent">Blanco tranparente</option>
+                                <option value="Red transparent">Rojo transparente</option>
+                                <option value="Green transparent">Verde transparente</option>
+                                <option value="Brown transparent">Café transparente</option>
+                                <option value="Blue transparent">Azúl transparente</option>
+                                <option value="Colored transparent">Transparente colorido</option>
+                                <option value="White opaque">Blanco opaco</option>
+                                <option value="Blue opaque">Azúl opaco</option>
+                                <option value="Green opaque">Verde opaco</option>
+                                <option value="Brown opaque">Café opaco</option>
+                                <option value="Black opaque">Negro opaco</option>
+                                <option value="Colored opaque">Opaco colorido</option>
+                                <option value="Yellow">Amarillo</option>
+                                <option value="Orange">Naranjado</option>
+                                <option value="Purple">Morado</option>
+                                <option value="Gray">Gris</option>
+                                <option value="Other color">Otro color</option>
+                            </select>
+                        </td>
+                        <td style="border: 3px solid #264d53;">
+                            <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
+                                aria-label="size 4 select example" name="packaging-type" id="packaging_type"
+                                required>
+
+                                <option value="Bottle">Botella</option>
+                                <option value="Can">Lata</option>
+                                <option value="Bag">Bolsa</option>
+                                <option value="Box">Caja</option>
+                                <option value="Cup">Frasco</option>
+                                <option value="Wrapping">Envoltorio</option>
+                                <option value="Lid">Tapa</option>
+                                <option value="Sheet">Hoja</option>
+                                <option value="Other">Otro</option>
+                            </select>
+                        </td>
+                        <td style="border: 3px solid #264d53;">
+                            <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
+                                aria-label="size 4 select example" name="bottle_cap" id="bottle_cap" required>
+
+                                <option selected value="N/A">N/A (No aplica)</option>
+                                <option value="TRUE">Sí tiene</option>
+                                <option value="FALSE">No tiene</option>
+                            </select>
+                        </td>
+
+                        <td style="border: 3px solid #264d53;">
+                            <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
+                                aria-label="size 4 select example" name="capacity" id="capacity" required>
+
+                                <option selected value="N/A">N/A (No aplica)</option>
+                                <option value="0-299">0-299 ml</option>
+                                <option value="300-499">300-499 ml</option>
+                                <option value="500-999">500-999 ml</option>
+                                <option value="1000-1499">1000-1499 ml</option>
+                                <option value="1500-3000">1500-3000 ml</option>
+                                <option value=">3000">>3000 ml</option>
+                            </select>
+                        </td>
+
+                    </tr>
+                </table>
+                <div style="padding-top:2em;">
                     <table class="table-bordered">
-                        <tr style="border: 3px solid #264d53;">
+                        <tr style="border: 3px solid #264d53">
                             <th style="border: 3px solid #264d53;">
                                 <h5>
-                                    <font face="Poppins" color="#0000"><b>Material</b></font> <img width=40
+                                    <font face="Poppins" color="#0000"><b>Suciedad</b></font> <img width=35
                                         style="margin-left:0.2em;"
-                                        src="https://cdn-icons-png.flaticon.com/512/4660/4660970.png" alt="">
-                                </h5>
-                            </th>
-                            <th>
-                                <h5>
-                                    <font face="Poppins" color="#0000"><b>Color empaque</b></font> <img width=35
-                                        style="margin-left:0.2em;"
-                                        src="https://cdn-icons-png.flaticon.com/512/291/291029.png" alt="">
+                                        src="https://cdn-icons-png.flaticon.com/512/2260/2260431.png" alt="">
                                 </h5>
                             </th>
                             <th style="border: 3px solid #264d53;">
                                 <h5>
-                                    <font face="Poppins" color="#0000"><b>Tipo empaque</b></font><img width=35
+                                    <font face="Poppins" color="#0000"><b>Marca</b></font> <img width=35
                                         style="margin-left:0.2em;"
-                                        src="https://cdn-icons-png.flaticon.com/512/1585/1585223.png" alt="">
+                                        src="https://cdn-icons-png.flaticon.com/512/5130/5130770.png" alt="">
                                 </h5>
 
                             </th>
                             <th style="border: 3px solid #264d53;">
                                 <h5>
-                                    <font face="Poppins" color="#0000"><b>Tapa botella</b></font> <img width=35
+                                    <font face="Poppins" color="#0000"><b>Referencia</b></font> <img width=35
                                         style="margin-left:0.2em;"
-                                        src="https://cdn-icons-png.flaticon.com/512/7030/7030752.png" alt="">
-                                </h5>
-                            </th>
-                            <th style="border: 3px solid #264d53;">
-                                <h5>
-                                    <font face="Poppins" color="#0000"><b>Capacidad (ml)</b> <img width=35
-                                            style="margin-left:0.2em;"
-                                            src="https://cdn-icons-png.flaticon.com/512/1000/1000227.png" alt=""></font>
+                                        src="https://cdn-icons-png.flaticon.com/512/3940/3940190.png" alt="">
                                 </h5>
 
                             </th>
+                            <th style="border: 3px solid #264d53;">
+                                <h5>
+                                    <font face="Poppins" color="#0000"><b>Daño</b></font> <img width=35
+                                        style="margin-left:0.2em;"
+                                        src="https://cdn-icons-png.flaticon.com/512/1739/1739833.png" alt="">
+                                </h5>
+                            </th>
+
                         </tr>
-                        <tr>
+                        <tr style="border: 3px solid #264d53;">
                             <td style="border: 3px solid #264d53;">
                                 <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
-                                    aria-label="size 4 select example" name="material" id="material" required>
+                                    aria-label="size 4 select example" name="dirtiness" id="dirtiness" required>
 
-
-                                    <option value="PET">PET</option>
-                                    <option value="PE-HD">PE-HD</option>
-                                    <option value="PVC">PVC</option>
-                                    <option value="PE-LD">PE-LD</option>
-                                    <option value="PP">PP</option>
-                                    <option value="PS">PS</option>
-                                    <option value="Other plastic">Otro plástico</option>
-                                    <option value="Glass">Vidrio</option>
-                                    <option value="Aluminium">Aluminio</option>
-                                    <option value="Other metal">Otro metal</option>
-                                    <option value="Cardboard">Cartón</option>
-                                    <option value="Paper print">Papel de impresión</option>
-                                    <option value="Newspaper">Periódico</option>
-                                    <option value="Magazine">Revista</option>
-                                    <option value="Tetrapack">Tetrapack</option>
-                                    <option value="Other">Otro</option>
+                                    <option value="Clean">Limpio</option>
+                                    <option value="Small">Poca suciedad</option>
+                                    <option value="Medium">Suciedad media</option>
+                                    <option value="High">Mucha suciedad</option>
                                 </select>
                             </td>
                             <td style="border: 3px solid #264d53;">
                                 <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
-                                    aria-label="size 4 select example" name="package_color" id="package_color" required>
+                                    aria-label="size 4 select example" name="brand" id="brand" required>
+
+                                    <option value="N/A">N/A (No aplica)</option>
+                                    <option value="Coca-cola">Coca-Cola</option>
+                                    <option value="Bavaria">Bavaria</option>
+                                    <option value="Postobon">Postobón</option>
+                                    <option value="Colanta">Colanta</option>
+                                    <option value="Alpina">Alpina</option>
+                                    <option value="Pepsi">Pepsi</option>
+                                    <option value="Nacional de chocolates">Nacional de chocolates</option>
+                                    <option value="Detodito">Detodito</option>
+                                    <option value="Doritos">Doritos</option>
+                                    <option value="Gatorade">Gatorade</option>
+                                    <option value="Cheesetris">Cheesetris</option>
+                                    <option value="Manimoto">Manimoto</option>
+                                    <option value="Margarita">Margarita</option>
+                                    <option value="Tosh">Tosh</option>
+                                    <option value="Other">Otra marca</option>
+                                </select>
+                            </td>
+                            <td style="border: 3px solid #264d53;">
+                                <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
+                                    aria-label="size 4 select example" name="reference" id="reference" required>
 
                                     <option selected value="N/A">N/A (No aplica)</option>
-                                    <option value="Clear transparent">Transparente claro</option>
-                                    <option value="White transparent">Blanco tranparente</option>
-                                    <option value="Red transparent">Rojo transparente</option>
-                                    <option value="Green transparent">Verde transparente</option>
-                                    <option value="Brown transparent">Café transparente</option>
-                                    <option value="Blue transparent">Azúl transparente</option>
-                                    <option value="Colored transparent">Transparente colorido</option>
-                                    <option value="White opaque">Blanco opaco</option>
-                                    <option value="Blue opaque">Azúl opaco</option>
-                                    <option value="Green opaque">Verde opaco</option>
-                                    <option value="Brown opaque">Café opaco</option>
-                                    <option value="Black opaque">Negro opaco</option>
-                                    <option value="Colored opaque">Opaco colorido</option>
-                                    <option value="Yellow">Amarillo</option>
-                                    <option value="Orange">Naranjado</option>
-                                    <option value="Purple">Morado</option>
-                                    <option value="Gray">Gris</option>
-                                    <option value="Other color">Otro color</option>
-                                </select>
-                            </td>
-                            <td style="border: 3px solid #264d53;">
-                                <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
-                                    aria-label="size 4 select example" name="packaging-type" id="packaging_type"
-                                    required>
-
-                                    <option value="Bottle">Botella</option>
-                                    <option value="Can">Lata</option>
-                                    <option value="Bag">Bolsa</option>
-                                    <option value="Box">Caja</option>
-                                    <option value="Cup">Frasco</option>
-                                    <option value="Wrapping">Envoltorio</option>
-                                    <option value="Lid">Tapa</option>
-                                    <option value="Sheet">Hoja</option>
-                                    <option value="Other">Otro</option>
-                                </select>
-                            </td>
-                            <td style="border: 3px solid #264d53;">
-                                <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
-                                    aria-label="size 4 select example" name="bottle_cap" id="bottle_cap" required>
-
-                                    <option selected value="N/A">N/A (No aplica)</option>
-                                    <option value="TRUE">Sí tiene</option>
-                                    <option value="FALSE">No tiene</option>
+                                    <option value="Zero">Zero</option>
+                                    <option value="Original">Original</option>
+                                    <option value="Pony Malta">Pony Malta</option>
+                                    <option value="Manzana">Manzana</option>
+                                    <option value="Yogurt">Yogurt</option>
+                                    <option value="Bonyurt">Bonyurt</option>
+                                    <option value="Pepsi">Pepsi</option>
+                                    <option value="Chocolatina Jet">Chocolatina Jet</option>
+                                    <option value="Other">Otra referencia</option>
                                 </select>
                             </td>
 
                             <td style="border: 3px solid #264d53;">
                                 <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
-                                    aria-label="size 4 select example" name="capacity" id="capacity" required>
+                                    aria-label="size 4 select example" name="damage" id="damage" required>
 
-                                    <option selected value="N/A">N/A (No aplica)</option>
-                                    <option value="0-299">0-299 ml</option>
-                                    <option value="300-499">300-499 ml</option>
-                                    <option value="500-999">500-999 ml</option>
-                                    <option value="1000-1499">1000-1499 ml</option>
-                                    <option value="1500-3000">1500-3000 ml</option>
-                                    <option value=">3000">>3000 ml</option>
+                                    <option value="N/A">N/A</option>
+                                    <option value="Mixed">Semi-dañado</option>
+                                    <option value="Damaged">Dañado</option>
+                                    <option value="Undamaged">No dañado</option>
                                 </select>
                             </td>
-
                         </tr>
                     </table>
-                    <div style="padding-top:2em;">
-                        <table class="table-bordered">
-                            <tr style="border: 3px solid #264d53">
-                                <th style="border: 3px solid #264d53;">
-                                    <h5>
-                                        <font face="Poppins" color="#0000"><b>Suciedad</b></font> <img width=35
-                                            style="margin-left:0.2em;"
-                                            src="https://cdn-icons-png.flaticon.com/512/2260/2260431.png" alt="">
-                                    </h5>
-                                </th>
-                                <th style="border: 3px solid #264d53;">
-                                    <h5>
-                                        <font face="Poppins" color="#0000"><b>Marca</b></font> <img width=35
-                                            style="margin-left:0.2em;"
-                                            src="https://cdn-icons-png.flaticon.com/512/5130/5130770.png" alt="">
-                                    </h5>
-
-                                </th>
-                                <th style="border: 3px solid #264d53;">
-                                    <h5>
-                                        <font face="Poppins" color="#0000"><b>Referencia</b></font> <img width=35
-                                            style="margin-left:0.2em;"
-                                            src="https://cdn-icons-png.flaticon.com/512/3940/3940190.png" alt="">
-                                    </h5>
-
-                                </th>
-                                <th style="border: 3px solid #264d53;">
-                                    <h5>
-                                        <font face="Poppins" color="#0000"><b>Daño</b></font> <img width=35
-                                            style="margin-left:0.2em;"
-                                            src="https://cdn-icons-png.flaticon.com/512/1739/1739833.png" alt="">
-                                    </h5>
-                                </th>
-
-                            </tr>
-                            <tr style="border: 3px solid #264d53;">
-                                <td style="border: 3px solid #264d53;">
-                                    <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
-                                        aria-label="size 4 select example" name="dirtiness" id="dirtiness" required>
-
-                                        <option value="Clean">Limpio</option>
-                                        <option value="Small">Poca suciedad</option>
-                                        <option value="Medium">Suciedad media</option>
-                                        <option value="High">Mucha suciedad</option>
-                                    </select>
-                                </td>
-                                <td style="border: 3px solid #264d53;">
-                                    <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
-                                        aria-label="size 4 select example" name="brand" id="brand" required>
-
-                                        <option value="N/A">N/A (No aplica)</option>
-                                        <option value="Coca-cola">Coca-Cola</option>
-                                        <option value="Bavaria">Bavaria</option>
-                                        <option value="Postobon">Postobón</option>
-                                        <option value="Colanta">Colanta</option>
-                                        <option value="Alpina">Alpina</option>
-                                        <option value="Pepsi">Pepsi</option>
-                                        <option value="Nacional de chocolates">Nacional de chocolates</option>
-                                        <option value="Detodito">Detodito</option>
-                                        <option value="Doritos">Doritos</option>
-                                        <option value="Gatorade">Gatorade</option>
-                                        <option value="Cheesetris">Cheesetris</option>
-                                        <option value="Manimoto">Manimoto</option>
-                                        <option value="Margarita">Margarita</option>
-                                        <option value="Tosh">Tosh</option>
-                                        <option value="Other">Otra marca</option>
-                                    </select>
-                                </td>
-                                <td style="border: 3px solid #264d53;">
-                                    <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
-                                        aria-label="size 4 select example" name="reference" id="reference" required>
-
-                                        <option selected value="N/A">N/A (No aplica)</option>
-                                        <option value="Zero">Zero</option>
-                                        <option value="Original">Original</option>
-                                        <option value="Pony Malta">Pony Malta</option>
-                                        <option value="Manzana">Manzana</option>
-                                        <option value="Yogurt">Yogurt</option>
-                                        <option value="Bonyurt">Bonyurt</option>
-                                        <option value="Pepsi">Pepsi</option>
-                                        <option value="Chocolatina Jet">Chocolatina Jet</option>
-                                        <option value="Other">Otra referencia</option>
-                                    </select>
-                                </td>
-
-                                <td style="border: 3px solid #264d53;">
-                                    <select class="form-select" style="border: 3px solid #007491;" type="text" size="4"
-                                        aria-label="size 4 select example" name="damage" id="damage" required>
-
-                                        <option value="N/A">N/A</option>
-                                        <option value="Mixed">Semi-dañado</option>
-                                        <option value="Damaged">Dañado</option>
-                                        <option value="Undamaged">No dañado</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
                 </div>
-                <div style="padding-left: 34.1em; padding-top: 2em;">
-                    <button type="submit" class="btn btn-primary btn-lg" style=" border: 3px solid rgb(0, 103, 172);">
-                        <font face="Poppins">Clasificar residuo </font>
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <div>
-            <table style="text-align:center; background:none; border:none;">
-                <tr style="background:none; border:none;">
-                    <th style="background:none; border:none;">
-                        <img style="border-radius: 2em;" width=350 src={{enlace}} alt="">
-                        <h5 style="text-align:center;padding-top:1em">
-                            <font face=Poppins>Este residuo debe ir en la <br><b>{{archivo}}</b>.</font>
-                        </h5>
-                    </th>
-                    <th style="background:none; border:none; padding-left: 3em;">
-                        <div class="color4 borde1" style="text-align: center; margin-top: 3em; padding:1em;">
-                            <h4 style="text-align:center;">
-                                <font face=Poppins><b>Material:</b> {{Material}} &nbsp; <br> &nbsp; <b>Color de
-                                        empaque:</b> {{Package_color}} &nbsp; <br> &nbsp; <b>Tapa de botella:</b>
-                                    {{Bottle_cap}} &nbsp; <br> &nbsp; <b>Suciedad:</b> {{Dirtiness}} &nbsp; <br>
-                                    &nbsp;<b>Tipo de empaque:</b> {{Packaging_type}} &nbsp; <br> &nbsp; <b>Marca:</b>
-                                    {{Brand}}&nbsp; <br> &nbsp; <b>Referencia:</b> {{Reference}} &nbsp; <br> &nbsp;
-                                    <b>Capacidad:</b> {{Capacity}} &nbsp; <br> &nbsp;<b>Daño:</b> {{Damage}}
-                                </font>
-                            </h4>
-                        </div>
-
-                    </th>
-                </tr>
-            </table>
-        </div>
-        <a id="success"></a>
-
+            </div>
+            <div style="padding-left: 34.1em; padding-top: 2em;">
+                <button type="submit" class="btn btn-primary btn-lg" style=" border: 3px solid rgb(0, 103, 172);">
+                    <font face="Poppins">Clasificar residuo </font>
+                </button>
+            </div>
+        </form>
     </div>
-</body>
 
-</html>
+    <div>
+        <table style="text-align:center; background:none; border:none;">
+            <tr style="background:none; border:none;">
+                <th style="background:none; border:none;">
+                    <img style="border-radius: 2em;" width=350 src={{enlace}} alt="">
+                    <h5 style="text-align:center;padding-top:1em">
+                        <font face=Poppins>Este residuo debe ir en la <br><b>{{archivo}}</b>.</font>
+                    </h5>
+                </th>
+                <th style="background:none; border:none; padding-left: 3em;">
+                    <div class="color4 borde1" style="text-align: center; margin-top: 3em; padding:1em;">
+                        <h4 style="text-align:center;">
+                            <font face=Poppins><b>Material:</b> {{Material}} &nbsp; <br> &nbsp; <b>Color de
+                                    empaque:</b> {{Package_color}} &nbsp; <br> &nbsp; <b>Tapa de botella:</b>
+                                {{Bottle_cap}} &nbsp; <br> &nbsp; <b>Suciedad:</b> {{Dirtiness}} &nbsp; <br>
+                                &nbsp;<b>Tipo de empaque:</b> {{Packaging_type}} &nbsp; <br> &nbsp; <b>Marca:</b>
+                                {{Brand}}&nbsp; <br> &nbsp; <b>Referencia:</b> {{Reference}} &nbsp; <br> &nbsp;
+                                <b>Capacidad:</b> {{Capacity}} &nbsp; <br> &nbsp;<b>Daño:</b> {{Damage}}
+                            </font>
+                        </h4>
+                    </div>
+
+                </th>
+            </tr>
+        </table>
+    </div>
+    <a id="success"></a>
+
+</div>
+
+
+{% endblock content %} 
