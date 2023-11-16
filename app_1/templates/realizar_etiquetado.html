@@ -17,7 +17,7 @@
 
         <form action="/etiqueta_exito/" method="POST">
             {% csrf_token %}
-            <div class="color4 borde1" style="margin-left: 28em; margin-right: 28em; padding: 0.5em;">
+            <div class="color4 borde1" style="margin-left: 9em; padding: 0.5em; width: 60%;">
 
                 <input class="form-control" type="file" id="file-input" accept="image/png, image/jpeg, .json"
                     multiple required>
@@ -26,9 +26,9 @@
 
                 <table style="text-align:left; background:none; border:none">
                     <tr style="background:none; border:none;">
-                        <th style="background:none; border:none;">
+                        <!-- <th style="background:none; border:none;">
                             <canvas id="micanvas" width="600" height="400"></canvas>
-                        </th>
+                        </th> -->
                         <th style="background:none; border:none;">
                             <h4>
                                 <font face="Poppins" color="#0000"><b>Selecciona un residuo</b></font>
@@ -58,13 +58,13 @@
                     let imagen = [];
                     let item2;
                     var imag = new Image();
-                    var canvas = document.getElementById("micanvas");
-                    canvas.style.display = "none";
+                    /*var canvas = document.getElementById("micanvas");
+                    canvas.style.display = "none";*/
 
-                    var ctx = canvas.getContext("2d");
+                    //var ctx = canvas.getContext("2d");
                     let prueba = [];
                     document.getElementById("file-input").addEventListener("change", (event) => {
-                        canvas.style.display = "block";
+                        //canvas.style.display = "block";
                         archFinal = [];
                         let fileInput = document.getElementById("file-input");
                         let imageContainer = document.getElementById("images");
