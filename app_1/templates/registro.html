@@ -1,572 +1,99 @@
-<style>
-	:root {
-		--width: 300px;
-		--padding: 10px;
-		--bgcolor: #193235;
-		--hovercolor: #0f1f20;
-		--width-collapsed: 50px;
-	}
+{% extends 'layouts/base_invitado.html' %} 
+{% block content %}
 
-	body {
-		background: url(https://i.postimg.cc/284ZrdcS/Imagen7.png);
-		background-size: 100%;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		font-family: 'Poppins';
-		font-size: 22px;
-		padding: 0;
-		margin: 0;
-		margin-left: var(--width-collapsed);
-	}
-
-	#main-container {
-		color: white;
-	}
-
-
-	#sidemenu {
-		background-color: var(--bgcolor);
-		color: white;
-		position: fixed;
-		height: 100%;
-		z-index: 3;
-		left: 0;
-		top: 0;
-	}
-
-	#sidemenu a {
-		color: white;
-		text-decoration: none;
-	}
-
-	.colorPunto {
-		color: #c8ff70;
-		;
-	}
-
-	#sidemenu #header {
-		box-sizing: border-box;
-		border-bottom: solid 3px var(--hovercolor);
-	}
-
-	#sidemenu #header #title {
-		box-sizing: border-box;
-		overflow: hidden;
-	}
-
-	#sidemenu #header #title,
-	#sidemenu #header #menu-btn {
-		vertical-align: middle;
-	}
-
-	#sidemenu #header #menu-btn {
-		cursor: pointer;
-		padding: 10px;
-		width: var(--width-collapsed);
-		box-sizing: border-box;
-	}
-
-	#sidemenu #header #menu-btn :hover {
-		background-color: var(--hovercolor);
-	}
-
-	#sidemenu #header #menu-btn .btn-hamburger {
-		background-color: #fff;
-		width: 100%;
-		height: 2px;
-		margin: 5px 0;
-		transition: .4s ease all;
-	}
-
-
-	#sidemenu #profile {
-		border-bottom: solid 3px var(--hovercolor);
-		padding: var(--padding) 0;
-		text-align: center;
-	}
-
-	#sidemenu #profile #photo {
-		box-sizing: border-box;
-		padding: var(--padding);
-		margin: 0 auto;
-
-	}
-
-	#sidemenu #profile #photo img {
-		width: 70%;
-	}
-
-	#sidemenu #profile #photo,
-	#sidemenu #profile #name {
-		font-size: 24px;
-		padding: var(--padding) 0;
-		overflow: hidden;
-	}
-
-	#sidemenu #menu-items {
-		overflow: hidden;
-	}
-
-	#sidemenu #menu-items .item {
-		width: var(--width);
-	}
-
-	#sidemenu #menu-items .item .icon {
-		display: inline-block;
-	}
-
-	#sidemenu #menu-items .item .icon,
-	#sidemenu #menu-items .item .title {
-		font-size: 14px;
-		vertical-align: middle;
-		overflow: hidden;
-		display: inline-block;
-	}
-
-	#sidemenu #menu-items .item a {
-		display: block;
-		transition: .3s ease all;
-	}
-
-	#sidemenu #menu-items .item a:hover {
-		background-color: var(--hovercolor);
-		transition: .4s ease all;
-
-	}
-
-	#sidemenu #menu-items .item .icon {
-		box-sizing: border-box;
-		padding: var(--padding);
-		width: var(--width-collapsed);
-		cursor: pointer;
-	}
-
-	#sidemenu #menu-items .item .icon img {
-		width: 100%;
-		cursor: pointer;
-
-	}
-
-	#sidemenu #menu-items .item .title {
-		padding: var(--padding) 0;
-	}
-
-	#sidemenu #menu-items .item .separator {
-		height: 1px;
-		border-bottom: solid 3px var(--hovercolor);
-		margin: 15px 0;
-	}
-
-	#sidemenu #menu-items .borde {
-		border-bottom: solid 3px #0f1f20;
-		;
-	}
-
-	.menu-expanded {
-		width: var(--width);
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-		transition: .3s ease all;
-	}
-
-	.menu-expanded #header #title {
-		display: inline-block;
-		width: calc(100% - 50px);
-		margin-right: -5px;
-		padding: var(--padding);
-	}
-
-	.menu-expanded #header #title span2 {
-		width: calc(var(--width) - var(--width-collapsed) - 5px);
-		overflow: hidden;
-		transition: .3s ease all;
-	}
-
-	.menu-expanded #profile #photo {
-		width: 80%;
-		transition: .3s ease all;
-	}
-
-	.menu-expanded #profile #name {
-		width: 100%;
-		transition: .3s ease all;
-	}
-
-	.menu-collapsed {
-		width: var(--width-collapsed);
-		transition: .3s ease all;
-	}
-
-	.menu-collapsed #header #title {
-		width: 0;
-		height: 0;
-		padding: 0;
-		margin: 0;
-		transition: .3s ease all;
-	}
-
-	.menu-collapsed #profile #name {
-		display: none;
-		transition: .3s ease all;
-	}
-
-	.menu-collapsed .item {
-		width: 100px;
-		transition: .3s ease all;
-	}
-
-	.fondoColor {
-		background-color: #204044;
-		height: 57px;
-		box-shadow: 0 2px 5px rgba(0, 0, 0);
-	}
-
-	.alinear {
-		text-align: right;
-	}
-
-	.fondoColor2 {
-		box-shadow: -6px 3px 5px rgba(0, 0, 0);
-	}
-
-	.espacios {
-		margin-left: 8px;
-		float: right;
-		padding: 0.8em;
-		color: #fff;
-		font-size: 18px;
-		text-decoration: none;
-		background: #1b363a;
-		transition: .3s ease all;
-	}
-
-	.logo {
-		float: right;
-		padding-top: 6px;
-		padding-right: 25px;
-		padding-left: 20px;
-		color: #fff;
-	}
-
-	.espacios:hover {
-
-		background: #152b2e;
-		cursor: pointer;
-	}
-
-	.centrado {
-		padding-right: 3em;
-		padding-left: 3em;
-	}
-
-	.posicion {
-		position: fixed;
-	}
-
-	.borde1 {
-		border: 5px solid;
-		border-color: #ffbe30;
-		border-radius: 30px;
-	}
-
-	.box {
-		border: 7px solid rgb(51, 87, 153);
-		background: #70c6ff;
-		border-radius: 1em;
-		padding: 1em;
-		margin-left: 2em;
-		transition: .3s ease all;
-
-	}
-
-	.color3 {
-		background: #feffce;
-	}
-
-	.color4 {
-		background: #ade8f3;
-		border-radius: 1em;
-		padding: 3px;
-		border: 4px solid #264d53;
-	}
-
-	.color1 {
-		color: rgb(32, 151, 16);
-	}
-
-	.color2 {
-		color: rgb(0, 68, 3);
-	}
-
-	.box:hover {
-		background: rgb(79, 123, 209);
-	}
-
-	body,
-	html {
-
-		height: 100%;
-		background: url(https://i.postimg.cc/284ZrdcS/Imagen7.png);
-		background-size: 100%;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		font-family: 'Poppins';
-		font-size: 22px;
-		padding: 0;
-		margin: 0;
-	}
-
-	.user_card {
-		background: #1a99af;
-		border-radius: 1em;
-		border: 5px solid #264d53;
-		width: 350px;
-		margin-top: auto;
-		margin-bottom: auto;
-		position: relative;
-		display: flex;
-		justify-content: center;
-		flex-direction: column;
-		padding: 20px;
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-		-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-		-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-	}
-
-	.form_container {
-		margin-top: 20px;
-	}
-
-	#form-title {
-		color: rgb(10, 36, 53);
-
-	}
-
-	.login_btn {
-		width: 100%;
-		background: #33ccff !important;
-		color: white !important;
-	}
-
-	.login_btn:focus {
-		box-shadow: none !important;
-		outline: 0px !important;
-	}
-
-	.login_container {
-		padding: 0 2rem;
-	}
-
-	.input-group-text {
-		background: #0e3235 !important;
-		color: white !important;
-		border: 0 !important;
-		border-radius: 0.25rem 0 0 0.25rem !important;
-	}
-
-	.input_user,
-	.input_pass:focus {
-		box-shadow: none !important;
-		outline: 0px !important;
-	}
-
-	#messages {
-		background-color: grey;
-		color: #fff;
-		padding: 10px;
-		margin-top: 10px;
-	}
-
-	.fondoColor {
-		background-color: #204044;
-		height: 57px;
-		box-shadow: 0 2px 5px rgba(0, 0, 0);
-	}
-
-	.alinear {
-		text-align: right;
-	}
-
-	.posicion {
-		position: fixed;
-	}
-
-	.espacios {
-		margin-left: 8px;
-		float: right;
-		padding: 0.8em;
-		color: #fff;
-		font-size: 18px;
-		text-decoration: none;
-		background: #1b363a;
-		transition: .3s ease all;
-	}
-
-	.espacios:hover {
-
-		background: #152b2e;
-		cursor: pointer;
-	}
-
-	:root {
-		--width: 300px;
-		--padding: 10px;
-		--bgcolor: #193235;
-		--hovercolor: #0f1f20;
-		--width-collapsed: 50px;
-	}
-
-	.mensaje {
-		margin-left: 8px;
-		float: right;
-		padding: 0.8em;
-		color: #fff;
-		font-size: 18px;
-		text-decoration: none;
-		background: #1b363a;
-		transition: .3s ease all;
-		border-radius: 1em;
-	}
-</style>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>Login</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-		integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="https://i.postimg.cc/nVqJcPRM/Logo-Eco-Mind-SOLO-IMAGEN-SIN-CIRCULO.png">
-	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-	<title> Home - EcoMind</title>
-
-
-</head>
-
-<body>
-	<nav class="fondoColor alinear posicion"><span><a href="../creditos/"><img width=4% title="Créditos" style="margin-top:12px;padding-right:10px" class="logo" src="https://i.postimg.cc/hv0HdXjF/3020135683-41c68d66f7-w.png" alt=""></a></span>
-		<span><a href="/"><img width=13% class="logo" src="https://i.postimg.cc/Z51mbyCw/Logo-Eco-Mind-Cilindro.png"
-					alt=""></a></span>
-		<span>
-			<a href=""><abbr class="espacios" title="¡Llámanos o escríbenos!">
-					<font face="Poppins">Contáctenos</font>
-				</abbr></a>
-			<a href=""><abbr class="espacios" title="¡Conócenos!">
-					<font face="Poppins">Quiénes somos</font>
-				</abbr></a>
-			<a href=""><abbr class="espacios" title="¿Qué ofrecemos en EcoMind?">
-					<font face="Poppins">Servicios</font>
-				</abbr></a>
-			<a href="/"><abbr class="espacios" title="Regresa a la pantalla de inicio">
-					<font face="Poppins">Inicio</font>
-				</abbr></a>
-			
-				
-		</span>
+<div style="text-align: center; padding-top: 2em;" class="container h-100">
 		
-	</nav>
-	
-	<div style="text-align: center; padding-top: 2em;" class="container h-100">
-		
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<h4 id="form-title">
-						<font face="Poppins"><b>Registro de usuarios</b></font>
-					</h4>
-				</div>
-				<div class="d-flex justify-content-center form_container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <h4 id="form-title">
+                    <font face="Poppins"><b>Registro de usuarios</b></font>
+                </h4>
+            </div>
+            <div class="d-flex justify-content-center form_container">
 
-					<form method="POST" action="/registro/">
-						{% csrf_token %}
-						
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i face="Poppins" class="fas fa-user"></i></span>
-							</div>
-							{{form.username}}
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i face="Poppins" class="fas fa-key"></i></span>
-							</div>
-							{{form.password1}}
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i face="Poppins" class="fas fa-key"></i></span>
-							</div>
-							{{form.password2}}
-						</div>
+                <form method="POST" action="/registro/">
+                    {% csrf_token %}
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i face="Poppins" class="fas fa-user"></i></span>
+                        </div>
+                        {{form.username}}
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i face="Poppins" class="fas fa-key"></i></span>
+                        </div>
+                        {{form.password1}}
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i face="Poppins" class="fas fa-key"></i></span>
+                        </div>
+                        {{form.password2}}
+                    </div>
 
-						<div class="d-flex justify-content-center mt-3 login_container">
-							<button type="submit" class="btn btn-primary" style=" border: 3px solid rgb(0, 103, 172);">
-								<font face="Poppins">Registrarse</font>
-							</button>
-						</div>
-					</form>
-				</div>
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <button type="submit" class="btn btn-primary" style=" border: 3px solid rgb(0, 103, 172);">
+                            <font face="Poppins">Registrarse</font>
+                        </button>
+                    </div>
+                </form>
+            </div>
 
-				<div class="mt-0">
-					<div class=" justify-content-center links">
-						<font face="Poppins">¿Ya tienes una cuenta?</font> <a href="../login/" class="ml-2">
-							<font style="color:#97d5da" face="Poppins">Login</font>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div style="padding-top: 4em; padding-left: 3em; transition: .3s ease all; ">
-				<div>
-					<p>
-						<h6><font face="Poppins" style="text-align: center;" color="#203b6b"><b>
-							{{form.errors.password2}}
-							{{form.errors.username}}
-						</b></font></h6>	
-					<h4 style="padding-bottom: 0.5em;">
-						
-						<font face="Poppins"> <b>Ten en cuenta que...</b></font>
-					</h4>
-					<h6>
-						<font face="Poppins">
-							
-							La contraseña no puede <br>parecerse al nombre.<br>
-							<br>
-							La contraseña debe tener <br>al menos 8 caracteres, <br>
-							incluyendo letras y números. <br>
-							<br>
-							La contraseña no puede ser <br>demasiado común.
-						</font>
-						</p>
-					</h6>
-				</div>
-			</div>
+            <div class="mt-0">
+                <div class=" justify-content-center links">
+                    <font face="Poppins">¿Ya tienes una cuenta?</font> <a href="../login/" class="ml-2">
+                        <font style="color:#97d5da" face="Poppins">Login</font>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div style="padding-top: 4em; padding-left: 3em; transition: .3s ease all; ">
+            <div>
+                <p>
+                    <h6><font face="Poppins" style="text-align: center;" color="#203b6b"><b>
+                        {{form.errors.password2}}
+                        {{form.errors.username}}
+                    </b></font></h6>	
+                <h4 style="padding-bottom: 0.5em;">
+                    
+                    <font face="Poppins"> <b>Ten en cuenta que...</b></font>
+                </h4>
+                <h6>
+                    <font face="Poppins">
+                        
+                        La contraseña no puede <br>parecerse al nombre.<br>
+                        <br>
+                        La contraseña debe tener <br>al menos 8 caracteres, <br>
+                        incluyendo letras y números. <br>
+                        <br>
+                        La contraseña no puede ser <br>demasiado común.
+                    </font>
+                    </p>
+                </h6>
+            </div>
+        </div>
 
-		</div>
-	</div>
-	<script>
-		/* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
+    </div>
+</div>
+
+<script>
+    /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
 //We start indexing at one because CSRF_token is considered and input field 
 */
 
-		//Query All input fields
-		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder = 'Nombre..';
-		form_fields[2].placeholder = 'Contraseña...';
-		form_fields[3].placeholder = 'Repita la contraseña...';
+    //Query All input fields
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = 'Nombre..';
+    form_fields[2].placeholder = 'Contraseña...';
+    form_fields[3].placeholder = 'Repita la contraseña...';
 
 
-		for (var field in form_fields) {
-			form_fields[field].className += ' form-control'
-		}
-	</script>
-</body>
+    for (var field in form_fields) {
+        form_fields[field].className += ' form-control'
+    }
+</script>
 
-</html>
+{% endblock content %} 
