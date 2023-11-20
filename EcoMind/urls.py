@@ -15,24 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app_1 import views as app1Views
+from web_app import views as webAppViews
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', app1Views.home),
-    path('home/', app1Views.home),
-    path('mis_puntos/', app1Views.mis_puntos),
-    path('mi_actividad/', app1Views.mi_actividad),
-    path('store/', app1Views.tienda),
-    path('etiquetado/', app1Views.etiquetado),
-    path('etiqueta_exito/', app1Views.etiquetaExito),
-    path('realizar_etiquetado/', app1Views.realizar_etiquetado),
-    path('clasificado/', app1Views.clasificado),
-    path('clasificado_etiqueta/', app1Views.clasificado_etiqueta),
-    path('clasificado_formulario/', app1Views.clasificado_formulario),
-    path('login/', app1Views.login1),
-    path('registro/', app1Views.registro),
-    path('logout/', app1Views.logoutUser),
-    path('creditos/', app1Views.creditos),
+    path('', webAppViews.home),
+    path('home/', webAppViews.home),
+    path('my_points/', webAppViews.my_points),
+    path('my_activity/', webAppViews.my_activity),
+    path('store/', webAppViews.store),
+    path('tagging/', webAppViews.tagging),
+    path('save_tag/', webAppViews.save_tag),
+    path('create_tag/', webAppViews.create_tag),
+    path('clasify/', webAppViews.clasify),
+    path('clasify_by_tag/', webAppViews.clasify_by_tag),
+    path('clasify_by_form/', webAppViews.clasify_by_form),
+    path('login/', webAppViews.login1),
+    path('register/', webAppViews.register),
+    path('logout/', webAppViews.logoutUser),
+    path('credits/', webAppViews.credits),
 ]

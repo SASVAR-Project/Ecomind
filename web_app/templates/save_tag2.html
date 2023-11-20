@@ -1,0 +1,72 @@
+{% extends 'layouts/base.html' %} 
+{% block content %}
+<style>
+    table,
+    th,
+    td {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        padding: 10px;
+        border: 3px solid #264d53;
+        background: #70c6ff;
+
+
+    }
+
+    th {
+
+        border: 3px solid #0b98ad;
+        background: #0094b9;
+    }
+
+    td {
+        background: none;
+    }
+
+
+    .presente {
+        background-color: var(--hovercolor);
+        border-left: 3px solid #90dddd;
+    }
+</style>
+
+<div style="padding-left: 12em; margin-top: 9px;">
+    <img style="box-shadow: 0px 3px 5px rgb(0, 0, 0)" width=88.5% src="https://i.postimg.cc/BvpB42vF/Logo-Eco-Mind-Barra-Secundaria.png"
+        border="0px">
+</div>
+
+<div style="padding-top: 3em;">
+    <table style="text-align:left; background:none; border:none;">
+        <tr style="background:none; border:none;">
+            <th style="background:none; border:none;">
+                <img class="ml-4" width="330"
+                    style="border: 7px solid rgb(0, 112, 187); border-radius: 2em; background:rgb(70, 255, 255); margin-left:1em;"
+                    alt="exito" src="https://www.rhpaenews.com/wp-content/uploads/2019/12/Icono-Exito-min.png" />
+            </th>
+            <th style="background:none; border:none;">
+                <div style="text-align:center;">
+                    <h1 class="center titulo1 mt-4"><b>
+                            <font face="Poppins">¡Éxito! </font>
+                        </b></h1>
+                    <h5 class="center titulo1 mb-4"><b>
+                            <font face="Poppins">El etiquetado se realizó satisfactoriamente </font>
+                        </b></h5>
+                    <h4 class="center titulo1 mt-4"><b>
+                            <font face="Poppins">Como ya habías etiquetado este <br> residuo no ganaste puntos
+                            </font>
+                        </b></h4>
+                    <h5 class="center titulo1 mb-4"><b>
+                            <font face="Poppins"></font>
+                        </b></h5>
+                    <a href="../create_tag/" class="btn btn-primary btn-lg"
+                        style=" border: 3px solid rgb(0, 103, 172);">
+                        <font face="Poppins">Regresar a <br> Realizar etiquetado</font>
+                    </a>
+                </div>
+            </th>
+        </tr>
+    </table>
+</div>
+
+{% endblock content %} 

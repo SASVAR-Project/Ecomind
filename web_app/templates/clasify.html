@@ -1,0 +1,64 @@
+{% extends 'layouts/base.html' %} 
+{% block content %}
+
+<div style="padding-left: 12em; margin-top: 9px;">
+    <img style="box-shadow: 0px 3px 5px rgb(0, 0, 0)" width=88.5% src="https://i.postimg.cc/BvpB42vF/Logo-Eco-Mind-Barra-Secundaria.png"
+        border="0px">
+</div>
+
+<div style="padding-top:2em;">
+    <div>
+        <h2 style="text-align:center;"><b>
+                <font face=Poppins> ¡Bienvenid@ a la sección <b class="color1"> Clasificado de residuos! </font>
+            </b></h2>
+    </div>
+    <div style="text-align:center;padding-top:1em; padding-bottom: 2em;">
+        <img class="box" style="margin-left:0px;" width="170" alt="WhatsApp Logo" src="https://i.postimg.cc/PrM9zcPP/3320628.png" />
+        <div style="padding-top: 1em; padding-bottom: 1em;"><a href="../clasify/#iniciar"
+                class="btn btn-primary btn-lg" style=" border: 3px solid rgb(0, 103, 172);">
+                <font face="Poppins">Iniciar clasificado</font>
+            </a> </div>
+        <h4 style="text-align:center;">
+            <font face=Poppins> Para clasificar un residuo y ganar puntos, <b>primero debes etiquetarlo</b>. Si
+                <br>quieres clasificarlo sin haberlo etiquetado, escoge <b>Clasificado por formulario.</b>
+        </h4>
+    </div>
+
+    <div style="padding-bottom: 15px; padding-left:13em; padding-right: 13em;">
+        <div class="color4 borde1" style="padding: 1em;">
+            <div>
+                <h4 align="center" class="center titulo5 mt-4 mb-4">
+                    <font face="Poppins" color="#0000">En esta sección puedes realizar la clasificación de un
+                        residuo a partir de su etiqueta o llenando los campos del formulario. A
+                        partir de ello, podrás ganar puntos dependiendo del residuo que clasificaste con
+                        anterioridad.</font>
+                </h4>
+                <h2 align="center" class="center titulo5 mt-4 mb-4">
+                    <font face="Poppins" color="#0000">¡Simplemente fabuloso!</font>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <a id="iniciar"></a>
+    <div style="text-align:center; margin-top:20px; margin-bottom:18px;">
+        <h2>
+            <font face="Poppins" color="#0000"><b>Escoge una manera de clasificado</b></font>
+        </h2>
+    </div>
+
+    <div style="padding-bottom: 15px; padding-left:13em; padding-right: 13em; padding-bottom: 3em;">
+        <div style="text-align: center; padding-top: 1em">
+            <a href="../clasify_by_tag/" class="btn btn-primary btn-lg"
+                style=" border: 3px solid rgb(0, 103, 172);">
+                <font face="Poppins">Clasificado por etiqueta</font>
+            </a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="../clasify_by_form/" class="btn btn-primary btn-lg"
+                style=" border: 3px solid rgb(0, 103, 172);">
+                <font face="Poppins">Clasificado por formulario</font>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %} 

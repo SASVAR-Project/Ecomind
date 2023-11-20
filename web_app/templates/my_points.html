@@ -1,0 +1,79 @@
+{% extends 'layouts/base.html' %} 
+{% block content %}
+
+<div style="padding-left: 12em; margin-top: 9px;">
+    <img style="box-shadow: 0px 3px 5px rgb(0, 0, 0)" width=88.5% src="https://i.postimg.cc/BvpB42vF/Logo-Eco-Mind-Barra-Secundaria.png"
+        border="0px">
+</div>
+
+<div style="padding-top:2em;">
+    <div>
+        <h2 style="text-align:center; padding-left:1em;"><b>
+                <font face=Poppins> ¡Bienvenid@ a la sección <b class="color1"> Mis Puntos! </font>
+            </b></h2>
+    </div>
+    <div style="text-align:center;padding-top:1em; padding-bottom: 2em;">
+        <img class="box" style="margin-left:0px;" width="170" alt="WhatsApp Logo" src="https://i.postimg.cc/pVzgyyvQ/1140033.png" />
+        <div style="padding-top: 1em;"><a href="../my_points/#ver_puntos" class="btn btn-primary btn-lg"
+                style=" border: 3px solid rgb(0, 103, 172);">
+                <font face="Poppins">Ver puntos</font>
+            </a> </div>
+    </div>
+
+    <div style="padding-bottom: 15px; padding-left:13em; padding-right: 13em;">
+        <div class="color4 borde1" style="padding: 1em;">
+            <div>
+                <h4 align="center" class="center titulo5 mt-4 mb-4">
+                    <font face="Poppins" color="#0000">En esta sección puedes revisar cuáles son los puntos que has
+                        ganado debido al uso del sistema <b class="color1">Eco</b><b class="color2">Mind!</b> a lo
+                        largo del tiempo.</font>
+                </h4>
+                <h2 align="center" class="center titulo5 mt-4 mb-4">
+                    <font face="Poppins" color="#0000">🏆 ¡Mejor, imposible! 🏆</font>
+                </h2>
+                <a id="ver_puntos"></a>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align:center; margin-top:20px; margin-bottom:18px;padding-left:2em;">
+        <h2>
+            <font face="Poppins" color="#0000"><b>Puntos del usuario</b></font>
+        </h2>
+    </div>
+    <div style="text-align: center; padding-bottom: 1em;">
+        <h3>
+            <font face="Poppins" color="#0000">Tu total de puntos es: <b>{{points}} punto(s)</b></font>
+        </h3>
+    </div>
+    <div style="padding-left:12em; padding-right:12em;">
+        <table class="table table-hover table-bordered" style="background:#65ff72; border-color: #3753b1; ">
+            <thead>
+                <tr>
+                    <th style="background: #21318f; color:rgb(209, 209, 209);" scope="col">#</th>
+                    <th style="background: #21318f; color:rgb(209, 209, 209);" scope="col">Nombre</th>
+                    <th style="background: #21318f; color:rgb(209, 209, 209);" scope="col">Código</th>
+                    <th style="background: #21318f; color:rgb(209, 209, 209);" scope="col">Cantidad de puntos
+                        obtenidos</th>
+                    <th style="background: #21318f; color:rgb(209, 209, 209);" scope="col">Fecha de obtención</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for pointHistory in pointsHistory %}
+
+                <tr>
+                    <td style="background: #21318f; color:rgb(209, 209, 209);">{{forloop.counter}}</th>
+                    <td style="background: #5066e4; color:rgb(255, 255, 255);">{{name}}</td>
+                    <td style="background: #5066e4; color:rgb(255, 255, 255);">{{pointHistory.custom_user_id.id}}</td>
+                    <td style="background: #5066e4; color:rgb(255, 255, 255);">{{pointHistory.points}} punto(s)
+                    </td>
+                    <td style="background: #5066e4; color:rgb(255, 255, 255);">{{pointHistory.date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %} 
