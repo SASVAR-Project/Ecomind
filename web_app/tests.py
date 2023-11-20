@@ -10,8 +10,8 @@ class GuestTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Ingreso de")
 
-    def test_registro_page(self):
-        response = self.client.get('/registro/')
+    def test_register_page(self):
+        response = self.client.get('/register/')
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Registro de")
 
