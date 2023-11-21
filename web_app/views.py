@@ -339,7 +339,6 @@ def clasify_by_form(request):
     else:
         return render(request, 'clasify_by_form.html', {'file': can, 'link': can_link, 'Material': material, 'Package_color': package_color, 'Bottle_cap': bottle_cap, 'Dirtiness': dirtiness, 'Packaging_type': packaging_type, 'Brand': brand, 'Reference': reference, 'Capacity': capacity, 'Damage': damage})
 
-
 @login_required(login_url='../login/')
 def save_tag(request):
     user_obj = CustomUser.objects.get(name=request.user)
