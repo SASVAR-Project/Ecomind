@@ -170,7 +170,7 @@ def clasify_by_tag(request):
         cpoints = 0
         can_link = ""
 
-        file2 = Tag.objects.get(file_id=file)
+        file2 = Tag.objects.get(file_id=file, custom_user_id=user_obj)
 
         if file2.capacity != "N/A":
             capacity = file2.capacity + " ml"
@@ -269,7 +269,7 @@ def clasify_by_tag(request):
 
         user_obj = CustomUser.objects.get(name=request.user)
         file_id1 = request.POST['archivo']
-        tags4 = Tag.objects.get(file_id=file_id1)
+        tags4 = Tag.objects.get(file_id=file_id1, custom_user_id=user_obj)
         file_id2 = tags4.file_id
 
         verifier = False
