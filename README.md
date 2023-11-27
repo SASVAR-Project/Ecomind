@@ -2,6 +2,10 @@
 EcoMind is a software that allows the classification and labeling of usable solid waste. Labeling categorizes waste according to specific characteristics
 such as material, packaging color, and capacity. Labeling is used to identify the waste according to particular characteristics and thus create a dataset
 
+![Linter](https://github.com/SASVAR-Project/Ecomind/actions/workflows/linter.yml/badge.svg)
+![Unit tests](https://github.com/SASVAR-Project/Ecomind/actions/workflows/unit_test.yml/badge.svg)
+![Docker Image](https://github.com/SASVAR-Project/Ecomind/actions/workflows/docker_image.yml/badge.svg)
+
 # EcoMind documentation
 EcoMind full documentation can be found here: [wiki](https://github.com/SASVAR-Project/Ecomind/wiki)
 
