@@ -14,9 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Move to src folder
-        run: cd src
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -26,4 +23,6 @@ jobs:
         run: pip install flake8
 
       - name: Run Flake8
-        run: flake8
+        run: |
+          cd src
+          flake8
