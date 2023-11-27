@@ -18,7 +18,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASS
     - name: Build the Docker image
-      run: docker build . --tag danielgara/ecomind:latest
+      run: docker build -f ./src/Dockerfile ./src --tag danielgara/ecomind:latest
       
     - name: Docker Push
       run: docker push danielgara/ecomind
